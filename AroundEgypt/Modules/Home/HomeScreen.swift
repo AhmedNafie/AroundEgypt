@@ -21,6 +21,7 @@ struct HomeScreen: View {
         .onViewDidLoad {
             await viewModel.viewDidLoad()
         }
+        .errorAlert(error: $viewModel.error)
     }
 }
 

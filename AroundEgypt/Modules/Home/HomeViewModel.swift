@@ -9,6 +9,7 @@ import Foundation
 
 final class HomeViewModel: ObservableObject {
     @Published var text: String = "Hello, world!"
+    @Published var error: Error?
 
     private let interactor = HomeInteractor()
 
@@ -19,7 +20,7 @@ final class HomeViewModel: ObservableObject {
             case .success(let experinces):
                 text = experinces.first ?? ""
             case .failure(let error):
-                print(error)
+                self.error = error
         }
     }
 }

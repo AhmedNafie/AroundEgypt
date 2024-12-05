@@ -8,8 +8,11 @@
 import Foundation
 
 struct HomeRepository {
+    private let networkingService = NetworkingService()
+
     func getExperiences() async -> Result<[String], Error> {
-        try? await Task.sleep(nanoseconds: 2_000_000_000)
-        return .success(["New Data!"])
+        let url = URL(string: "https://example.com/")!
+        let request = URLRequest(url: url)
+        return await networkingService.request(request)
     }
 }

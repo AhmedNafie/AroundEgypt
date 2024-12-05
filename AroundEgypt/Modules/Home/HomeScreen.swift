@@ -19,7 +19,7 @@ struct HomeScreen: View {
         }
         .padding()
         .onViewDidLoad {
-            viewModel.viewDidLoad()
+            await viewModel.viewDidLoad()
         }
     }
 }

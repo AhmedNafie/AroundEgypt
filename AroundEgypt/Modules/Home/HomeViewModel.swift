@@ -10,9 +10,16 @@ import Foundation
 final class HomeViewModel: ObservableObject {
     @Published var text: String = "Hello, world!"
 
-    func viewDidLoad() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.text = "New Data!"
+    private let interactor = HomeInteractor()
+
+    @MainActor
+    func viewDidLoad() async {
+        let result = await interactor.fetchExperiences()
+        switch result {
+            case .success(let experinces):
+                text = experinces.first ?? ""
+            case .failure(let error):
+                print(error)
         }
     }
 }

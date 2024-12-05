@@ -8,8 +8,9 @@
 import Foundation
 
 struct HomeInteractor {
+    private let repository = HomeRepository()
+
     func fetchExperiences() async -> Result<[String], Error> {
-        try? await Task.sleep(nanoseconds: 2_000_000_000)
-        return .success(["New Data!"])
+        await repository.getExperiences()
     }
 }

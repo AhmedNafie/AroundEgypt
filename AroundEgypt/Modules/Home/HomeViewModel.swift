@@ -15,10 +15,30 @@ final class HomeViewModel: ObservableObject {
 
     @MainActor
     func viewDidLoad() async {
-        let result = await interactor.fetchExperiences()
+        async let recommendedExperiences: () = fetchRecommendedExperiences()
+        async let recentExperiences: () = fetchRecentExperiences()
+        _ = await (recommendedExperiences, recentExperiences)
+    }
+}
+
+private extension HomeViewModel {
+    @MainActor
+    func fetchRecommendedExperiences() async {
+        let result = await interactor.fetchRecommendedExperiences()
         switch result {
-            case .success(let experinces):
-                text = experinces.first ?? ""
+            case .success(let response):
+                text = response.data.first?.title ?? ""
+            case .failure(let error):
+                self.error = error
+        }
+    }
+
+    @MainActor
+    func fetchRecentExperiences() async {
+        let result = await interactor.fetchRecentExperiences()
+        switch result {
+            case .success(let response):
+                text = response.data.first?.title ?? ""
             case .failure(let error):
                 self.error = error
         }

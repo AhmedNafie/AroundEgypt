@@ -11,11 +11,17 @@ struct HomeScreen: View {
     @StateObject var viewModel: HomeViewModel
 
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text(viewModel.text)
+        Group {
+            if viewModel.isLoading {
+                ProgressView()
+            } else {
+                VStack {
+                    Image(systemName: "globe")
+                        .imageScale(.large)
+                        .foregroundStyle(.tint)
+                    Text(viewModel.text)
+                }
+            }
         }
         .padding()
         .onViewDidLoad {

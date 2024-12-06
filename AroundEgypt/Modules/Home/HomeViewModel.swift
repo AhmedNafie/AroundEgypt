@@ -9,6 +9,7 @@ import Foundation
 
 final class HomeViewModel: ObservableObject {
     @Published var text: String = "Hello, world!"
+    @Published var isLoading: Bool = true
     @Published var error: Error?
 
     private let interactor = HomeInteractor()
@@ -18,6 +19,7 @@ final class HomeViewModel: ObservableObject {
         async let recommendedExperiences: () = fetchRecommendedExperiences()
         async let recentExperiences: () = fetchRecentExperiences()
         _ = await (recommendedExperiences, recentExperiences)
+        isLoading = false
     }
 }
 

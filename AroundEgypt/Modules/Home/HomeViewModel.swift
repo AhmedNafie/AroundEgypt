@@ -8,10 +8,11 @@
 import Foundation
 
 final class HomeViewModel: ObservableObject {
-    @Published var searchText: String = ""
     @Published var recommendedExperiences: [Experience] = []
     @Published var recentExperiences: [Experience] = []
+    @Published var filteredExperiences: [Experience] = []
     @Published var isLoading: Bool = true
+    @Published var isSearching: Bool = false
     @Published var error: Error?
 
     private let interactor = HomeInteractor()
@@ -22,6 +23,33 @@ final class HomeViewModel: ObservableObject {
         async let recentExperiences: () = fetchRecentExperiences()
         _ = await (recommendedExperiences, recentExperiences)
         isLoading = false
+    }
+
+    func search(with title: String) {
+        isSearching = !title.isEmpty
+        guard !title.isEmpty else {
+            filteredExperiences.removeAll()
+            return
+        }
+        Task { @MainActor in
+            isLoading = true
+            let result = await interactor.searchExperinces(with: title)
+            isLoading = false
+            switch result {
+                case .success(let response):
+                    filteredExperiences = response.data.map {
+                        .init(
+                            imagePath: $0.imagePath,
+                            title: $0.title,
+                            views: $0.views,
+                            likes: $0.likes,
+                            isRecommended: false
+                        )
+                    }
+                case .failure(let error):
+                    self.error = error
+            }
+        }
     }
 }
 

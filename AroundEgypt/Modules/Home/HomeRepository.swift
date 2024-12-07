@@ -25,4 +25,12 @@ struct HomeRepository {
         let request = URLRequest(url: url)
         return await networkingService.request(request)
     }
+
+    func searchExperinces(with title: String) async -> Result<ExperiencesResponse, Error> {
+        guard let url = URL(string: Constants.Network.baseURL + "experiences?filter[title]=\(title)") else {
+            return .failure(NetworkError.invalidURL)
+        }
+        let request = URLRequest(url: url)
+        return await networkingService.request(request)
+    }
 }

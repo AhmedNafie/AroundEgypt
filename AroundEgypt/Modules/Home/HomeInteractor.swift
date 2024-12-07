@@ -17,4 +17,8 @@ struct HomeInteractor {
     func fetchRecentExperiences() async -> Result<ExperiencesResponse, Error> {
         await repository.getRecentExperiences()
     }
+
+    func searchExperinces(with title: String) async -> Result<ExperiencesResponse, Error> {
+        await repository.searchExperinces(with: title)
+    }
 }

@@ -12,10 +12,14 @@ struct HomeScreen: View {
 
     var body: some View {
         Group {
-            if viewModel.isLoading {
-                ProgressView()
-            } else {
+            HeaderView(viewModel: viewModel)
+            ZStack {
                 homeView()
+                if viewModel.isLoading {
+                    Color.white
+                        .edgesIgnoringSafeArea(.all)
+                    ProgressView()
+                }
             }
         }
         .padding(.top)
@@ -29,10 +33,24 @@ struct HomeScreen: View {
 private extension HomeScreen {
     func homeView() -> some View {
         ScrollView {
-            VStack(alignment: .center, spacing: 20) {
-                HeaderView(searchText: $viewModel.searchText)
-                RecommendedExperiencesView(experinces: $viewModel.recommendedExperiences)
-                RecentExperiencesView(experinces: $viewModel.recentExperiences)
+            VStack(spacing: 20) {
+                if viewModel.isSearching {
+                    if viewModel.filteredExperiences.isEmpty {
+                        Text("No results")
+                    } else {
+                        ExperiencesListView(experinces: $viewModel.filteredExperiences)
+                    }
+                } else {
+                    WelcomeView()
+                    RecommendedExperiencesView(experinces: $viewModel.recommendedExperiences)
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("Most Recent")
+                            .font(.title2.bold())
+                            .foregroundColor(.black)
+                            .padding(.leading)
+                        ExperiencesListView(experinces: $viewModel.recentExperiences)
+                    }
+                }
             }
         }
     }

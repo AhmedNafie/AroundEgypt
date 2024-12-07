@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ExperienceCardView: View {
     let experience: Experience
+    private let width = UIScreen.main.bounds.width - 40
 
     var body: some View {
         VStack(spacing: 14) {
@@ -21,14 +22,13 @@ struct ExperienceCardView: View {
             infoView()
         }
         .background(Color.white)
-        .frame(width: 339)
     }
 }
 
 private extension ExperienceCardView {
     func imageView() -> some View {
         AsyncImage(url: URL(string: experience.imagePath))
-            .frame(width: 339, height: 154)
+            .frame(width: width, height: width * 0.45)
             .scaledToFill()
             .clipped()
             .overlay(alignment: .topLeading) {
@@ -80,7 +80,7 @@ private extension ExperienceCardView {
             startPoint: .bottom,
             endPoint: .top
         )
-        .frame(width: 339, height: 50)
+        .frame(width: width, height: 50)
         .overlay(alignment: .bottomLeading) {
             HStack(spacing: 5) {
                 Image(systemName: "eye.fill")
@@ -111,7 +111,7 @@ private extension ExperienceCardView {
 
             Spacer()
 
-            HStack(spacing: 11) {
+            HStack(spacing: 5) {
                 Text("\(experience.likes)")
                     .font(.body.bold())
                 Image(systemName: "heart.fill")

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct HeaderView: View {
-    @Binding var searchText: String
+    var viewModel: HomeViewModel
+    @State private var searchText: String = ""
 
     var body: some View {
         HStack(spacing: 15) {
@@ -27,8 +28,6 @@ struct HeaderView: View {
                 .foregroundColor(.black)
         }
         .padding(.horizontal)
-
-        welcomeView()
     }
 }
 
@@ -41,28 +40,16 @@ private extension HeaderView {
             TextField("Try “Luxor”", text: $searchText)
                 .foregroundColor(.black)
                 .frame(height: 20)
+                .onSubmit {
+                    viewModel.search(with: searchText)
+                }
         }
         .padding(10)
         .background(.searchBar.opacity(0.12))
         .cornerRadius(10)
     }
-
-    func welcomeView() -> some View {
-        VStack(alignment: .leading) {
-            Text("Welcome!")
-                .font(.title2.bold())
-                .foregroundColor(.black)
-
-            Text(
-                "Now you can explore any experience in 360 degrees and get all the details about it all in one place."
-            )
-            .font(.body)
-            .foregroundColor(.black)
-        }
-        .padding(.horizontal)
-    }
 }
 
 #Preview {
-    HeaderView(searchText: .constant(""))
+    HeaderView(viewModel: .init())
 }

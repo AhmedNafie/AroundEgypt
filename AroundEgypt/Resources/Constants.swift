@@ -11,7 +11,7 @@ enum Constants {
     enum Network {
         static let baseURL = "https://aroundegypt.34ml.com/api/v2/"
     }
-    
+
     enum Text {
         static let recommended = "RECOMMENDED"
     }

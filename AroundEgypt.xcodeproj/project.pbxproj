@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		5D06B67B2D04D5FC00627FB6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5D06B67A2D04D5FC00627FB6 /* Kingfisher */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		5DB932D32D01F4D000B31DE3 /* AroundEgypt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AroundEgypt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D06B67B2D04D5FC00627FB6 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +71,7 @@
 			);
 			name = AroundEgypt;
 			packageProductDependencies = (
+				5D06B67A2D04D5FC00627FB6 /* Kingfisher */,
 			);
 			productName = AroundEgypt;
 			productReference = 5DB932D32D01F4D000B31DE3 /* AroundEgypt.app */;
@@ -97,6 +103,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				5DBB1C122D01FE12009032E4 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
+				5D06B6792D04D5FC00627FB6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5DB932D42D01F4D000B31DE3 /* Products */;
@@ -354,6 +361,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5D06B6792D04D5FC00627FB6 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.2;
+			};
+		};
 		5DBB1C122D01FE12009032E4 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
@@ -363,6 +378,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5D06B67A2D04D5FC00627FB6 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D06B6792D04D5FC00627FB6 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5DB932CB2D01F4D000B31DE3 /* Project object */;
 }

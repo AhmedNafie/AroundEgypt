@@ -11,6 +11,7 @@ import SwiftUI
 struct AroundEgyptApp: App {
     init() {
         UIView.appearance().overrideUserInterfaceStyle = .light
+        NetworkMonitor.shared.startMonitoring()
     }
 
     var body: some Scene {

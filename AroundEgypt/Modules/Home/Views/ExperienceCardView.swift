@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ExperienceCardView: View {
     let experience: Experience
@@ -27,7 +28,7 @@ struct ExperienceCardView: View {
 
 private extension ExperienceCardView {
     func imageView() -> some View {
-        AsyncImage(url: URL(string: experience.imagePath))
+        KFImage(URL(string: experience.imagePath))
             .frame(width: width, height: width * 0.45)
             .scaledToFill()
             .clipped()

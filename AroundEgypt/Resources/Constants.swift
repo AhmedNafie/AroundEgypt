@@ -37,5 +37,6 @@ enum Constants {
         static let noResults = "No Results..."
         static let description = "Description"
         static let egypt = ", Egypt."
+        static let views = "views"
     }
 }

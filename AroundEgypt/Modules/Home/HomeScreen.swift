@@ -32,6 +32,7 @@ private extension HomeScreen {
             VStack(alignment: .center, spacing: 20) {
                 HeaderView(searchText: $viewModel.searchText)
                 RecommendedExperiencesView(experinces: $viewModel.recommendedExperiences)
+                RecentExperiencesView(experinces: $viewModel.recentExperiences)
             }
         }
     }

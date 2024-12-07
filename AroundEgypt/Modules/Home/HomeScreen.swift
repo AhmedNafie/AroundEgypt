@@ -36,7 +36,9 @@ private extension HomeScreen {
             VStack(spacing: 20) {
                 if viewModel.isSearching {
                     if viewModel.filteredExperiences.isEmpty {
-                        Text("No results")
+                        Text("No Results...")
+                            .font(.title.bold())
+                            .padding()
                     } else {
                         ExperiencesListView(experinces: $viewModel.filteredExperiences)
                     }

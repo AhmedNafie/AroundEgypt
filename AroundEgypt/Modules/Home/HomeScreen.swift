@@ -15,19 +15,24 @@ struct HomeScreen: View {
             if viewModel.isLoading {
                 ProgressView()
             } else {
-                VStack {
-                    Image(systemName: "globe")
-                        .imageScale(.large)
-                        .foregroundStyle(.tint)
-                    Text(viewModel.text)
-                }
+                homeView()
             }
         }
-        .padding()
+        .padding(.top)
         .onViewDidLoad {
             await viewModel.viewDidLoad()
         }
         .errorAlert(error: $viewModel.error)
+    }
+}
+
+private extension HomeScreen {
+    func homeView() -> some View {
+        ScrollView {
+            VStack(alignment: .center, spacing: 20) {
+                HeaderView(searchText: $viewModel.searchText)
+            }
+        }
     }
 }
 

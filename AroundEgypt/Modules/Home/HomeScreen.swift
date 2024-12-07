@@ -31,6 +31,7 @@ private extension HomeScreen {
         ScrollView {
             VStack(alignment: .center, spacing: 20) {
                 HeaderView(searchText: $viewModel.searchText)
+                RecommendedExperiencesView(experinces: $viewModel.recommendedExperiences)
             }
         }
     }

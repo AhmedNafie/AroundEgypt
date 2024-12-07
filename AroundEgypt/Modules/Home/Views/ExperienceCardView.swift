@@ -32,8 +32,8 @@ private extension ExperienceCardView {
             .scaledToFill()
             .clipped()
             .overlay(alignment: .topLeading) {
-                HStack(spacing: 5) {
-                    if experience.isRecommended {
+                if experience.isRecommended {
+                    HStack(spacing: 5) {
                         Image(systemName: "star.fill")
                             .resizable()
                             .scaledToFit()
@@ -44,15 +44,14 @@ private extension ExperienceCardView {
                             .font(.caption.bold())
                             .foregroundStyle(.white)
                     }
+                    .padding(5)
+                    .background(
+                        Capsule()
+                            .fill(.black.opacity(0.5))
+                    )
+                    .padding(.top, 7)
+                    .padding(.leading, 10)
                 }
-                .padding(5)
-                .background(
-                    Capsule()
-                        .fill(.black.opacity(0.5))
-                )
-                .padding(.top, 7)
-                .padding(.leading, 10)
-
             }
             .overlay(alignment: .center) {
                 Image(.threeSixtyIcon)

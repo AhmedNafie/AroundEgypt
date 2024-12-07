@@ -10,16 +10,16 @@ import Foundation
 // MARK: - ExperiencesResponse
 struct ExperiencesResponse: Decodable {
     let meta: Meta
-    let data: [Experience]
+    let data: [ExperienceResponse]
     let pagination: Pagination
 }
 
-// MARK: - Experience
-struct Experience: Decodable {
+// MARK: - ExperienceResponse
+struct ExperienceResponse: Decodable {
     let id, title: String
-    let coverPhoto: String
+    let imagePath: String
     let description: String
-    let viewsNo, likesNo, recommended, hasVideo: Int
+    let views, likes, recommended, hasVideo: Int
     let tags: [City]
     let city: City
     let tourHTML: String
@@ -37,10 +37,10 @@ struct Experience: Decodable {
 
     enum CodingKeys: String, CodingKey {
         case id, title
-        case coverPhoto = "cover_photo"
+        case imagePath = "cover_photo"
         case description
-        case viewsNo = "views_no"
-        case likesNo = "likes_no"
+        case views = "views_no"
+        case likes = "likes_no"
         case recommended
         case hasVideo = "has_video"
         case tags, city

@@ -8,7 +8,9 @@
 import Foundation
 
 final class HomeViewModel: ObservableObject {
-    @Published var text: String = "Hello, world!"
+    @Published var searchText: String = ""
+    @Published var recommendedExperiences: [Experience] = []
+    @Published var recentExperiences: [Experience] = []
     @Published var isLoading: Bool = true
     @Published var error: Error?
 
@@ -29,7 +31,15 @@ private extension HomeViewModel {
         let result = await interactor.fetchRecommendedExperiences()
         switch result {
             case .success(let response):
-                text = response.data.first?.title ?? ""
+                recommendedExperiences = response.data.map {
+                    .init(
+                        imagePath: $0.imagePath,
+                        title: $0.title,
+                        views: $0.views,
+                        likes: $0.likes,
+                        isRecommended: true
+                    )
+                }
             case .failure(let error):
                 self.error = error
         }
@@ -40,7 +50,15 @@ private extension HomeViewModel {
         let result = await interactor.fetchRecentExperiences()
         switch result {
             case .success(let response):
-                text = response.data.first?.title ?? ""
+                recentExperiences = response.data.map {
+                    .init(
+                        imagePath: $0.imagePath,
+                        title: $0.title,
+                        views: $0.views,
+                        likes: $0.likes,
+                        isRecommended: false
+                    )
+                }
             case .failure(let error):
                 self.error = error
         }

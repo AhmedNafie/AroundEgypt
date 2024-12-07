@@ -11,7 +11,7 @@ struct HomeRepository {
     private let networkingService = NetworkingService()
 
     func getRecommendedExperiences() async -> Result<ExperiencesResponse, Error> {
-        guard let url = URL(string: Constants.Network.baseURL + "experiences?filter[recommended]=true") else {
+        guard let url = URL(string: Constants.Network.Endpoints.getRecommendedExperiences) else {
             return .failure(NetworkError.invalidURL)
         }
         let request = URLRequest(url: url)
@@ -19,7 +19,7 @@ struct HomeRepository {
     }
 
     func getRecentExperiences() async -> Result<ExperiencesResponse, Error> {
-        guard let url = URL(string: Constants.Network.baseURL + "experiences") else {
+        guard let url = URL(string: Constants.Network.Endpoints.getRecentExperiences) else {
             return .failure(NetworkError.invalidURL)
         }
         let request = URLRequest(url: url)
@@ -27,7 +27,12 @@ struct HomeRepository {
     }
 
     func searchExperinces(with title: String) async -> Result<ExperiencesResponse, Error> {
-        guard let url = URL(string: Constants.Network.baseURL + "experiences?filter[title]=\(title)") else {
+        guard let url = URL(string: Constants.Network.Endpoints.searchExperinces(with: title)) else {
+            return .failure(NetworkError.invalidURL)
+        }
+        let request = URLRequest(url: url)
+        return await networkingService.request(request)
+    }
             return .failure(NetworkError.invalidURL)
         }
         let request = URLRequest(url: url)

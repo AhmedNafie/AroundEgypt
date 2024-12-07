@@ -38,4 +38,16 @@ final class ExperienceDetailsViewModel: ObservableObject {
                 self.error = error
         }
     }
+
+    func likeExperince() {
+        Task { @MainActor in
+            let result = await interactor.likeExperince(with: selectedID)
+            switch result {
+                case .success(let response):
+                    experience.likes = response.data
+                case .failure(let error):
+                    self.error = error
+            }
+        }
+    }
 }

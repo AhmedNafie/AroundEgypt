@@ -35,6 +35,13 @@ struct ExperienceDetailsScreen: View {
 
                                 Image(systemName: isLiked ? "heart.fill" : "heart")
                                     .foregroundColor(.peach)
+                                    .onTapGesture {
+                                        if !isLiked {
+                                            isLiked = true
+                                            viewModel.likeExperince()
+                                            LikesCacheManager.shared.likeTapped(with: viewModel.experience.id)
+                                        }
+                                    }
 
                                 Text("\(viewModel.experience.likes)")
                                     .font(.body)

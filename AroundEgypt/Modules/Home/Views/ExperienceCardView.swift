@@ -28,6 +28,9 @@ struct ExperienceCardView: View {
         .task {
             isLiked = LikesCacheManager.shared.getState(for: experience.id)
         }
+        .onTapGesture {
+            viewModel.didSelectExperience(with: experience.id)
+        }
     }
 }
 

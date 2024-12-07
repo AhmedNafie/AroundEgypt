@@ -11,6 +11,7 @@ final class HomeViewModel: ObservableObject {
     @Published var recommendedExperiences: [Experience] = []
     @Published var recentExperiences: [Experience] = []
     @Published var filteredExperiences: [Experience] = []
+    @Published var selectedID: String?
     @Published var isLoading: Bool = true
     @Published var isSearching: Bool = false
     @Published var error: Error?
@@ -68,6 +69,10 @@ final class HomeViewModel: ObservableObject {
                     self.error = error
             }
         }
+    }
+
+    func didSelectExperience(with id: String) {
+        selectedID = id
     }
 }
 

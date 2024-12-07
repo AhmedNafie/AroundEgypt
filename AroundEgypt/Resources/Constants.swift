@@ -20,7 +20,7 @@ enum Constants {
             static func getSingleExperience(with id: String) -> String {
                 baseURL + "experiences/\(id)"
             }
-            static func like(id: String) -> String {
+            static func likeExperince(with id: String) -> String {
                 baseURL + "experiences/\(id)/like"
             }
 
@@ -35,5 +35,7 @@ enum Constants {
         static let recommendedExperiences = "Recommended Experiences"
         static let mostRecent = "Most Recent"
         static let noResults = "No Results..."
+        static let description = "Description"
+        static let egypt = ", Egypt."
     }
 }

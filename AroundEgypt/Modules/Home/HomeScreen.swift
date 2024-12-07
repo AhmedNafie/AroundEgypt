@@ -11,22 +11,29 @@ struct HomeScreen: View {
     @StateObject var viewModel: HomeViewModel
 
     var body: some View {
-        Group {
-            HeaderView(viewModel: viewModel)
-            ZStack {
-                homeView()
-                if viewModel.isLoading {
-                    Color.white
-                        .edgesIgnoringSafeArea(.all)
-                    ProgressView()
+        NavigationStack {
+            Group {
+                HeaderView(viewModel: viewModel)
+                ZStack {
+                    homeView()
+                    if viewModel.isLoading {
+                        Color.white
+                            .edgesIgnoringSafeArea(.all)
+                        ProgressView()
+                    }
                 }
             }
+            .padding(.top)
+            .onViewDidLoad {
+                await viewModel.viewDidLoad()
+            }
+            .errorAlert(error: $viewModel.error)
         }
-        .padding(.top)
-        .onViewDidLoad {
-            await viewModel.viewDidLoad()
+        .sheet(item: $viewModel.selectedID) { selectedID in
+            ExperienceDetailsScreen(
+                viewModel: ExperienceDetailsViewModel(selectedID: selectedID)
+            )
         }
-        .errorAlert(error: $viewModel.error)
     }
 }
 

@@ -10,20 +10,17 @@ import SwiftUI
 struct WelcomeView: View {
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Welcome!")
+            Text(Constants.Text.welcomeTitle)
                 .font(.title2.bold())
                 .foregroundColor(.black)
 
-            Text(
-                "Now you can explore any experience in 360 degrees and get all the details about it all in one place."
-            )
+            Text(Constants.Text.welcomeDetails)
             .font(.body)
             .foregroundColor(.black)
         }
         .padding(.horizontal)
     }
 }
-
 
 #Preview {
     WelcomeView()

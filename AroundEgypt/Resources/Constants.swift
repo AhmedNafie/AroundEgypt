@@ -14,5 +14,11 @@ enum Constants {
 
     enum Text {
         static let recommended = "RECOMMENDED"
+        static let welcomeTitle = "Welcome!"
+        static let welcomeDetails =
+            "Now you can explore any experience in 360 degrees and get all the details about it all in one place."
+        static let recommendedExperiences = "Recommended Experiences"
+        static let mostRecent = "Most Recent"
+        static let noResults = "No Results..."
     }
 }

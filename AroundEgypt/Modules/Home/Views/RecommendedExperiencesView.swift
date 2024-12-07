@@ -12,7 +12,7 @@ struct RecommendedExperiencesView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Recommended Experiences")
+            Text(Constants.Text.recommendedExperiences)
                 .font(.title2.bold())
                 .foregroundColor(.black)
                 .padding(.leading)

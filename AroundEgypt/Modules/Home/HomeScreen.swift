@@ -36,7 +36,7 @@ private extension HomeScreen {
             VStack(spacing: 20) {
                 if viewModel.isSearching {
                     if viewModel.filteredExperiences.isEmpty {
-                        Text("No Results...")
+                        Text(Constants.Text.noResults)
                             .font(.title.bold())
                             .padding()
                     } else {
@@ -46,7 +46,7 @@ private extension HomeScreen {
                     WelcomeView()
                     RecommendedExperiencesView(experinces: $viewModel.recommendedExperiences)
                     VStack(alignment: .leading, spacing: 10) {
-                        Text("Most Recent")
+                        Text(Constants.Text.mostRecent)
                             .font(.title2.bold())
                             .foregroundColor(.black)
                             .padding(.leading)

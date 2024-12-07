@@ -55,6 +55,14 @@ struct HomeRepository {
         request.httpMethod = "POST"
         return await networkingService.request(request)
     }
+
+    func getSingleExperince(with id: String) async -> Result<SingleExperienceResponse, Error> {
+        guard let url = URL(string: Constants.Network.Endpoints.getSingleExperience(with: id)) else {
+            return .failure(NetworkError.invalidURL)
+        }
+        let request = URLRequest(url: url)
+        return await networkingService.request(request)
+    }
 }
 
 private extension HomeRepository {

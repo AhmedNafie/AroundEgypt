@@ -39,6 +39,7 @@ final class HomeViewModel: ObservableObject {
                 case .success(let response):
                     filteredExperiences = response.data.map {
                         .init(
+                            id: $0.id,
                             imagePath: $0.imagePath,
                             title: $0.title,
                             views: $0.views,
@@ -61,6 +62,7 @@ private extension HomeViewModel {
             case .success(let response):
                 recommendedExperiences = response.data.map {
                     .init(
+                        id: $0.id,
                         imagePath: $0.imagePath,
                         title: $0.title,
                         views: $0.views,
@@ -80,6 +82,7 @@ private extension HomeViewModel {
             case .success(let response):
                 recentExperiences = response.data.map {
                     .init(
+                        id: $0.id,
                         imagePath: $0.imagePath,
                         title: $0.title,
                         views: $0.views,

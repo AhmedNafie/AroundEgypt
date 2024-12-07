@@ -20,7 +20,6 @@ class CachingService {
             experienceEntity.views = Int64(experience.views)
             experienceEntity.likes = Int64(experience.likes)
             experienceEntity.detailedDescription = experience.detailedDescription
-            experienceEntity.isLiked = experience.isLiked ?? false
             experienceEntity.cityName = experience.city.name
             experienceEntity.isRecommended = isRecommended
         }
@@ -49,7 +48,6 @@ class CachingService {
                     likes: Int(entity.likes),
                     city: City(name: entity.cityName ?? ""),
                     detailedDescription: entity.detailedDescription ?? "",
-                    isLiked: entity.isLiked,
                     isRecommended: entity.isRecommended
                 )
             }

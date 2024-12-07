@@ -5,11 +5,12 @@
 //  Created by Ahmed Nafie on 06/12/2024.
 //
 
-import SwiftUI
 import Kingfisher
+import SwiftUI
 
 struct ExperienceCardView: View {
     let experience: Experience
+    @State private var isLiked: Bool = false
     private let width = UIScreen.main.bounds.width - 40
 
     var body: some View {
@@ -23,15 +24,18 @@ struct ExperienceCardView: View {
             infoView()
         }
         .background(Color.white)
+        .task {
+            isLiked = LikesCacheManager.shared.getState(for: experience.id)
+        }
     }
 }
 
 private extension ExperienceCardView {
     func imageView() -> some View {
         KFImage(URL(string: experience.imagePath))
+            .resizable()
             .frame(width: width, height: width * 0.45)
             .scaledToFill()
-            .clipped()
             .overlay(alignment: .topLeading) {
                 if experience.isRecommended {
                     HStack(spacing: 5) {
@@ -115,8 +119,12 @@ private extension ExperienceCardView {
             HStack(spacing: 5) {
                 Text("\(experience.likes)")
                     .font(.body.bold())
-                Image(systemName: "heart.fill")
+
+                Image(systemName: isLiked ? "heart.fill" : "heart")
                     .foregroundColor(.peach)
+            }.onTapGesture {
+                isLiked = true
+                LikesCacheManager.shared.likeTapped(with: experience.id)
             }
         }
     }

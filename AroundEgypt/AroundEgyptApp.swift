@@ -9,6 +9,10 @@ import SwiftUI
 
 @main
 struct AroundEgyptApp: App {
+    init() {
+        UIView.appearance().overrideUserInterfaceStyle = .light
+    }
+
     var body: some Scene {
         WindowGroup {
             HomeScreen(viewModel: HomeViewModel())

@@ -19,9 +19,7 @@ class CachingService {
             experienceEntity.experienceDescription = experience.description
             experienceEntity.views = Int64(experience.views)
             experienceEntity.likes = Int64(experience.likes)
-            experienceEntity.detailedDescription = experience.detailedDescription
             experienceEntity.cityName = experience.city.name
-            experienceEntity.isRecommended = isRecommended
         }
 
         do {
@@ -46,9 +44,7 @@ class CachingService {
                     description: entity.experienceDescription ?? "",
                     views: Int(entity.views),
                     likes: Int(entity.likes),
-                    city: City(name: entity.cityName ?? ""),
-                    detailedDescription: entity.detailedDescription ?? "",
-                    isRecommended: entity.isRecommended
+                    city: City(name: entity.cityName ?? "")
                 )
             }
         } catch {

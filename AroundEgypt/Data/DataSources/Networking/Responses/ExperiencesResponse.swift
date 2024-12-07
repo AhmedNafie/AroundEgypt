@@ -19,8 +19,6 @@ struct ExperienceResponse: Decodable {
     let description: String
     let views, likes: Int
     let city: City
-    let detailedDescription: String
-    let isRecommended: Bool?
 
     enum CodingKeys: String, CodingKey {
         case id, title
@@ -29,8 +27,6 @@ struct ExperienceResponse: Decodable {
         case views = "views_no"
         case likes = "likes_no"
         case city
-        case detailedDescription = "detailed_description"
-        case isRecommended
     }
 }
 

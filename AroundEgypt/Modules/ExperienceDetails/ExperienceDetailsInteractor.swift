@@ -8,7 +8,7 @@
 import Foundation
 
 struct ExperienceDetailsInteractor {
-    private let repository = HomeRepository()
+    private let repository = ExperiencesRepository()
 
     func fetchSingleExperience(with id: String) async -> Result<SingleExperienceResponse, Error> {
         await repository.getSingleExperince(with: id)

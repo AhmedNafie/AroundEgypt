@@ -9,7 +9,7 @@ import Foundation
 
 final class ExperienceDetailsViewModel: ObservableObject {
     @Published var selectedID: String = ""
-    @Published var experience: Experience = .empty
+    @Published var experience: ExperienceDetails = .empty
     @Published var isLoading: Bool = true
     @Published var error: Error?
 
@@ -29,9 +29,10 @@ final class ExperienceDetailsViewModel: ObservableObject {
                     id: response.data.id,
                     imagePath: response.data.imagePath,
                     title: response.data.title,
+                    description: response.data.description,
+                    cityName: response.data.city.name,
                     views: response.data.views,
-                    likes: response.data.likes,
-                    isRecommended: false
+                    likes: response.data.likes
                 )
             case .failure(let error):
                 self.error = error

@@ -41,7 +41,7 @@ struct ExperienceDetailsScreen: View {
                             }
                             .padding(.top)
 
-                            Text(viewModel.experience.title)
+                            Text(viewModel.experience.cityName + Constants.Text.egypt)
                                 .font(.headline)
                                 .foregroundColor(.gray)
 
@@ -55,7 +55,7 @@ struct ExperienceDetailsScreen: View {
                                 .font(.largeTitle.bold())
                                 .padding(.top)
 
-                            Text("experience.views.description")
+                            Text(viewModel.experience.description)
                                 .font(.body)
                         }
                     }

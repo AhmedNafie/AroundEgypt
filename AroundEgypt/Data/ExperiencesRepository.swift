@@ -1,5 +1,5 @@
 //
-//  HomeRepository.swift
+//  ExperiencesRepository.swift
 //  AroundEgypt
 //
 //  Created by Ahmed Nafie on 05/12/2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct HomeRepository {
+struct ExperiencesRepository {
     private let networkingService = NetworkingService()
     private let cachingService = CachingService()
 
@@ -65,7 +65,7 @@ struct HomeRepository {
     }
 }
 
-private extension HomeRepository {
+private extension ExperiencesRepository {
     func handleSuccess(_ response: (ExperiencesResponse), isRecommended: Bool = false) -> Result<
         ExperiencesResponse, any Error
     > {

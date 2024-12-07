@@ -8,7 +8,7 @@
 import Foundation
 
 struct HomeInteractor {
-    private let repository = HomeRepository()
+    private let repository = ExperiencesRepository()
 
     func fetchRecommendedExperiences() async -> Result<ExperiencesResponse, Error> {
         await repository.getRecommendedExperiences()

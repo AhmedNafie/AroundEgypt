@@ -12,7 +12,7 @@ struct Experience: Identifiable {
     let imagePath: String
     let title: String
     let views: Int
-    let likes: Int
+    var likes: Int
     let isRecommended: Bool
 }
 

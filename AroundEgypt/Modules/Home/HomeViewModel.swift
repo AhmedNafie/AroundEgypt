@@ -52,6 +52,23 @@ final class HomeViewModel: ObservableObject {
             }
         }
     }
+
+    func likeExperince(with id: String) {
+        Task { @MainActor in
+            let result = await interactor.likeExperince(with: id)
+            switch result {
+                case .success(let response):
+                    if let index = recommendedExperiences.firstIndex(where: { $0.id == id }) {
+                        recommendedExperiences[index].likes = response.data
+                    }
+                    if let index = recentExperiences.firstIndex(where: { $0.id == id }) {
+                        recentExperiences[index].likes = response.data
+                    }
+                case .failure(let error):
+                    self.error = error
+            }
+        }
+    }
 }
 
 private extension HomeViewModel {

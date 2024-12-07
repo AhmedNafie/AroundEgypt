@@ -21,4 +21,8 @@ struct HomeInteractor {
     func searchExperinces(with title: String) async -> Result<ExperiencesResponse, Error> {
         await repository.searchExperinces(with: title)
     }
+
+    func likeExperince(with id: String) async -> Result<LikesResponse, Error> {
+        await repository.likeExperince(with: id)
+    }
 }

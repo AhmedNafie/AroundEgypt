@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RecommendedExperiencesView: View {
+    var viewModel: HomeViewModel
     @Binding var experinces: [Experience]
 
     var body: some View {
@@ -20,7 +21,10 @@ struct RecommendedExperiencesView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 15) {
                     ForEach(experinces) { experience in
-                        ExperienceCardView(experience: experience)
+                        ExperienceCardView(
+                            viewModel: viewModel,
+                            experience: experience
+                        )
                     }
                 }
                 .padding(.horizontal)
@@ -31,6 +35,7 @@ struct RecommendedExperiencesView: View {
 
 #Preview {
     RecommendedExperiencesView(
+        viewModel: .init(),
         experinces:
             .constant(
                 [

@@ -40,17 +40,26 @@ private extension HomeScreen {
                             .font(.title.bold())
                             .padding()
                     } else {
-                        ExperiencesListView(experinces: $viewModel.filteredExperiences)
+                        ExperiencesListView(
+                            viewModel: viewModel,
+                            experinces: $viewModel.filteredExperiences
+                        )
                     }
                 } else {
                     WelcomeView()
-                    RecommendedExperiencesView(experinces: $viewModel.recommendedExperiences)
+                    RecommendedExperiencesView(
+                        viewModel: viewModel,
+                        experinces: $viewModel.recommendedExperiences
+                    )
                     VStack(alignment: .leading, spacing: 10) {
                         Text(Constants.Text.mostRecent)
                             .font(.title2.bold())
                             .foregroundColor(.black)
                             .padding(.leading)
-                        ExperiencesListView(experinces: $viewModel.recentExperiences)
+                        ExperiencesListView(
+                            viewModel: viewModel,
+                            experinces: $viewModel.recentExperiences
+                        )
                     }
                 }
             }

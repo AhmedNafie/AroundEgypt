@@ -46,9 +46,13 @@ struct HomeRepository {
         let request = URLRequest(url: url)
         return await networkingService.request(request)
     }
+
+    func likeExperince(with id: String) async -> Result<LikesResponse, Error> {
+        guard let url = URL(string: Constants.Network.Endpoints.likeExperince(with: id)) else {
             return .failure(NetworkError.invalidURL)
         }
-        let request = URLRequest(url: url)
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
         return await networkingService.request(request)
     }
 }

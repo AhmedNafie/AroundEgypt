@@ -9,6 +9,7 @@ import Kingfisher
 import SwiftUI
 
 struct ExperienceCardView: View {
+    var viewModel: HomeViewModel
     let experience: Experience
     @State private var isLiked: Bool = false
     private let width = UIScreen.main.bounds.width - 40
@@ -123,13 +124,19 @@ private extension ExperienceCardView {
                 Image(systemName: isLiked ? "heart.fill" : "heart")
                     .foregroundColor(.peach)
             }.onTapGesture {
-                isLiked = true
-                LikesCacheManager.shared.likeTapped(with: experience.id)
+                if !isLiked {
+                    isLiked = true
+                    viewModel.likeExperince(with: experience.id)
+                    LikesCacheManager.shared.likeTapped(with: experience.id)
+                }
             }
         }
     }
 }
 
 #Preview {
-    ExperienceCardView(experience: .preview)
+    ExperienceCardView(
+        viewModel: .init(),
+        experience: .preview
+    )
 }

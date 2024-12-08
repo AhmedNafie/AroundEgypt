@@ -20,6 +20,7 @@ class CachingService {
             experienceEntity.views = Int64(experience.views)
             experienceEntity.likes = Int64(experience.likes)
             experienceEntity.cityName = experience.city.name
+            experienceEntity.isRecommended = isRecommended
         }
 
         do {

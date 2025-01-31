@@ -13,7 +13,7 @@ struct HomeScreen: View {
     var body: some View {
         NavigationStack {
             Group {
-                HeaderView(viewModel: viewModel)
+                HeaderView(onSubmit: viewModel.search(with:))
                 ZStack {
                     homeView()
                     if viewModel.isLoading {
@@ -48,14 +48,16 @@ private extension HomeScreen {
                             .padding()
                     } else {
                         ExperiencesListView(
-                            viewModel: viewModel,
+                            onSelectExperience: viewModel.didSelectExperience(with:),
+                            onLikeExperience: viewModel.likeExperince(with:),
                             experinces: $viewModel.filteredExperiences
                         )
                     }
                 } else {
                     WelcomeView()
                     RecommendedExperiencesView(
-                        viewModel: viewModel,
+                        onSelectExperience: viewModel.didSelectExperience(with:),
+                        onLikeExperience: viewModel.likeExperince(with:),
                         experinces: $viewModel.recommendedExperiences
                     )
                     VStack(alignment: .leading, spacing: 10) {
@@ -64,7 +66,8 @@ private extension HomeScreen {
                             .foregroundColor(.black)
                             .padding(.leading)
                         ExperiencesListView(
-                            viewModel: viewModel,
+                            onSelectExperience: viewModel.didSelectExperience(with:),
+                            onLikeExperience: viewModel.likeExperince(with:),
                             experinces: $viewModel.recentExperiences
                         )
                     }

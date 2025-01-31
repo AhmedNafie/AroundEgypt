@@ -9,8 +9,10 @@ import Kingfisher
 import SwiftUI
 
 struct ExperienceCardView: View {
-    var viewModel: HomeViewModel
     let experience: Experience
+    let onSelectExperience: (String) -> Void
+    let onLikeExperience: (String) -> Void
+
     @State private var isLiked: Bool = false
     private let width = UIScreen.main.bounds.width - 40
 
@@ -29,7 +31,7 @@ struct ExperienceCardView: View {
             isLiked = LikesCacheManager.shared.getState(for: experience.id)
         }
         .onTapGesture {
-            viewModel.didSelectExperience(with: experience.id)
+            onSelectExperience(experience.id)
         }
     }
 }
@@ -129,7 +131,7 @@ private extension ExperienceCardView {
             }.onTapGesture {
                 if !isLiked {
                     isLiked = true
-                    viewModel.likeExperince(with: experience.id)
+                    onLikeExperience(experience.id)
                     LikesCacheManager.shared.likeTapped(with: experience.id)
                 }
             }
@@ -139,7 +141,8 @@ private extension ExperienceCardView {
 
 #Preview {
     ExperienceCardView(
-        viewModel: .init(),
-        experience: .preview
+        experience: .preview,
+        onSelectExperience: { _ in },
+        onLikeExperience: { _ in }
     )
 }

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct HeaderView: View {
-    var viewModel: HomeViewModel
     @State private var searchText: String = ""
+    let onSubmit: (String) -> Void
 
     var body: some View {
         HStack(spacing: 15) {
@@ -41,7 +41,7 @@ private extension HeaderView {
                 .foregroundColor(.black)
                 .frame(height: 20)
                 .onSubmit {
-                    viewModel.search(with: searchText)
+                    onSubmit(searchText)
                 }
         }
         .padding(10)
@@ -51,5 +51,5 @@ private extension HeaderView {
 }
 
 #Preview {
-    HeaderView(viewModel: .init())
+    HeaderView(onSubmit: {_ in})
 }
